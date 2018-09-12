@@ -1,0 +1,9 @@
+Brenden Judson
+Design Rational Reflection
+
+I decided to implement the horse race using the strategy pattern. This pattern
+allows us to nicely handle the variations in the various racing strategies by
+making them share a common interface. We are designing to an interface not an
+implementation. I also have a race class that adds horses (another class)
+and has a function to start the race. There is also be a main class that 
+creates and starts the race.
