@@ -1,0 +1,11 @@
+Brenden Judson
+Design Rational Reflection
+
+I decided to implement the ocean explorer game using the observer pattern. To do
+this I decided to implement a ship class as the observable class and a pirate
+ship class that observes the ship class. This pattern allows the pirate ship to
+recieve updates from the ship and react to it's movements. Also, because both
+priate ship and ships need to have an understanding of the map to navigate the
+game, I decided to give them both an instance of the map in their constructors.
+Wrapping this all together is the OceanExplorer class which acts as the main 
+controller for this project.
