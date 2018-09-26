@@ -1,0 +1,26 @@
+Brenden Judson
+hwk5
+reflection
+
+1) To implement a second traintrack I edited the MapBuilder to generate 2 
+tracks. However, this meant I had to make the gates observers of both trains
+so that the logic could be based off the location of both trains. I also had to
+add a simple indicator variable telling the direction of a train in a train 
+class. I liked my implementation for the first part because I think my simple
+solution if effective enough. I thought about adding additional states but
+this solution is cleaner in my opinion. I implemented the crossing cars by
+having the east car factory randomy assign some cars to cross with a indicator
+variable. Then if it is a crossing car the logic in move() is handled
+accordingly. I think a better implementation would have been to keep lists of 
+cars that are on the various roads and switch the cars between these lists 
+depending on the location of the car. 
+
+2) I think my implementaion for the first part would scale decently well.
+However, the gate logic would have be changed with each additional track. We
+could instead generate a list of tracks and traverse this list when evaluating
+gate logic. I think my implementation for the second part will not scale very
+well ecspecially if there were multiple crossing roads. In order to make it
+scale better I could give the cars information on what road they are on to
+help them decide how to move. A seperate apporach would be to make a list
+of cars for each road and then traverse the cars in this list and handle the
+movement.
