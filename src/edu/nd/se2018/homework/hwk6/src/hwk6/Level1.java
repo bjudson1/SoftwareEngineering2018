@@ -5,6 +5,7 @@ import java.awt.Point;
 public class Level1 implements LevelStrategy{
 	private int[][] grid;
 	private Point chipStart;
+	private Point bugStart;
 	private final int chips = 3;
 	
 	public Level1(){
@@ -13,7 +14,8 @@ public class Level1 implements LevelStrategy{
 	
 	public void buildLevel() {		
 		chipStart = new Point(12,7);
-
+		bugStart = new Point(7,6);
+		
 		for(int i=0;i<25;i++){
 			for(int j=0;j<25;j++){
 				grid[i][j] = 0;
@@ -47,6 +49,10 @@ public class Level1 implements LevelStrategy{
 	
 	public Point getChipStart(){
 		return chipStart;
+	}
+	
+	public Point getBugStart(){
+		return bugStart;
 	}
 	
 	public int getChipsCount() {

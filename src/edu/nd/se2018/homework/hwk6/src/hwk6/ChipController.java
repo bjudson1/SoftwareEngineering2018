@@ -23,11 +23,14 @@ public class ChipController extends Application{
 	private Image chipUpImage;
 	private Image chipRightImage;
 	private Image chipLeftImage;
+	private ImageView bugImageView;
+	private Image bugImage;
 	private LevelStrategy level;
 	private AnchorPane rootNode;
 	private int curLevel;
 	private GraphicsContext gc;
 	private Canvas consoleCanvas;
+	private Bug bug;
 	
 	private Image blankTileImage;
 	private Image wallImage;
@@ -42,10 +45,6 @@ public class ChipController extends Application{
 
 	public Map createMap(LevelStrategy level) {
 		rootNode.getChildren().clear();
-		
-		
-	
-		
 		
 		//create and build map 
 		Map map = new Map();
@@ -86,9 +85,12 @@ public class ChipController extends Application{
 			}
 		}
 		
+		
+		
+		
 		//instantiate chip character
 		chip = new Chip(map,level.getChipStart());
-				
+	
 		//load chip images
 		chipDownImage = new Image("chipDown.png",25,25,true,true);
 		chipUpImage = new Image("chipUp.png",25,25,true,true);
@@ -100,6 +102,15 @@ public class ChipController extends Application{
 		chipImageView.setX(chip.getLocation().x * scale);
 		chipImageView.setY(chip.getLocation().y * scale);
 		rootNode.getChildren().add(chipImageView);
+		
+		//add bug to map
+		bug = new Bug(map,level.getBugStart(),chip);
+		bugImage = new Image("bugUp.png",25,25,true,true);
+		bugImageView = new ImageView(bugImage);
+		bugImageView.setX(bug.getLocation().x * scale);
+		bugImageView.setY(bug.getLocation().y * scale);
+		rootNode.getChildren().add(bugImageView);
+				
 		
 		
 		//set up side console
@@ -176,7 +187,11 @@ public class ChipController extends Application{
 						break;
 						
 				} 
-		
+				//check if lost
+				if(chip.getLocation().x == bug.getLocation().x && chip.getLocation().y == bug.getLocation().y) {
+					writeText(40,"You Lost:(",200,300,Color.RED);
+				}
+				
 				//if land on key remove and give chip key
 				if(map.getValue(chip.getLocation().x,chip.getLocation().y) == 2) {
 					Image blankTileImage = new Image("BlankTile.png",25,25,true,true);
@@ -231,6 +246,7 @@ public class ChipController extends Application{
 					gc.fillRect(670,125,100,50);
 					writeText(20,"Chips: " + chip.getChips(),620,150,Color.DARKGRAY);
 					
+					
 					//check if won
 					if(chip.getChips() == level.getChipsCount()) {
 						//if on 1st level go to second
@@ -252,6 +268,11 @@ public class ChipController extends Application{
 				chipImageView.setX(chip.getLocation().x*scale);
 				chipImageView.setY(chip.getLocation().y*scale);
 				
+				
+				bugImageView.setX(bug.getLocation().x*scale);
+				bugImageView.setY(bug.getLocation().y*scale);
+				
+				//System.out.print(bug.getLocation());
 			}
 		});
 	}

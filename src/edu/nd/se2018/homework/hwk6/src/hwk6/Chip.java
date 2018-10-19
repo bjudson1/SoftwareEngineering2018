@@ -1,8 +1,9 @@
 package hwk6;
 
 import java.awt.Point;
+import java.util.Observable;
 
-public class Chip{
+public class Chip extends Observable{
 	private Point location;
 	private int keys;
 	private int chips;
@@ -16,42 +17,62 @@ public class Chip{
 	}
 	
 	public void goEast(){
-		if(location.x < 24 && map.getValue(location.x+1, location.y) != 1 && map.getValue(location.x+1, location.y) != 3)
+		if(location.x < 24 && map.getValue(location.x+1, location.y) != 1 && map.getValue(location.x+1, location.y) != 3) {
 			location.x += 1;
+			setChanged();
+			notifyObservers();
+		}
 		
 		else if(map.getValue(location.x+1, location.y) == 3 && keys > 0){
 			location.x += 1;
 			keys -= 1;
+			setChanged();
+			notifyObservers();
 		}
 	}
 	
 	public void goWest() {
-		if(location.x > 0 && map.getValue(location.x-1, location.y) != 1 && map.getValue(location.x-1, location.y) != 3)
+		if(location.x > 0 && map.getValue(location.x-1, location.y) != 1 && map.getValue(location.x-1, location.y) != 3) {
 			location.x -= 1;
+			setChanged();
+			notifyObservers();
+		}
 		
 		else if(map.getValue(location.x-1, location.y) == 3 && keys > 0){
 			location.x -= 1;
 			keys -= 1;
+			setChanged();
+			notifyObservers();
 		}
 	}
 	
 	public void goNorth(){
-		if(location.y > 0 && map.getValue(location.x, location.y-1) != 1 && map.getValue(location.x, location.y-1) != 3)
+		if(location.y > 0 && map.getValue(location.x, location.y-1) != 1 && map.getValue(location.x, location.y-1) != 3) {
 			location.y -= 1;
+			setChanged();
+			notifyObservers();
+		}
 		
 		else if(map.getValue(location.x, location.y-1) == 3 && keys > 0){
 			location.y -= 1;
 			keys -= 1;
+			setChanged();
+			notifyObservers();
 		}
 	}
 	
 	public void goSouth(){
-		if(location.y < 24 && map.getValue(location.x, location.y+1) != 1 && map.getValue(location.x, location.y+1) != 3)
+		if(location.y < 24 && map.getValue(location.x, location.y+1) != 1 && map.getValue(location.x, location.y+1) != 3) {
 			location.y += 1;
+			setChanged();
+			notifyObservers();
+		}
 		
 		else if(map.getValue(location.x, location.y+1) == 3 && keys > 0){
 			location.y += 1;
 			keys -= 1;
+			setChanged();
+			notifyObservers();
 		}
 	}
 	

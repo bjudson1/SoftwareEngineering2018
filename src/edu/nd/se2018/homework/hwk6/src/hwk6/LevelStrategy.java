@@ -7,4 +7,5 @@ public interface LevelStrategy {
 	public int getTile(int i,int j);
 	public Point getChipStart();
 	public int getChipsCount();
+	public Point getBugStart();
 }
